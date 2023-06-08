@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">  
+  </ion-header>
+  <ion-content class="listvalues">
+    <ion-list>
+      <ion-list-header>
+        <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search"></ion-searchbar>
+        
+        
+        <ion-button id="filter-modal" >
+          <ion-icon name="filter-outline" color="primary" slot="end"></ion-icon>
+          </ion-button>
+         <ion-button  (click)="roleData()"></ion-button>
+      </ion-list-header>
+      <ion-row>
+        <ng-container *ngFor="let contact of filteredContacts">
+          <ion-col size="6" size-sm="4" size-md="3" size-lg="2" size-xl="2">
+            <ion-card class="text-center">
+              <div class="image-container">
+                <ion-avatar class="custom">
+                  <img [src]="contact.imageSrc" />
+             
+                </ion-avatar>
+              
+              </div>
+              <ion-card-content>
+                <ion-card-title class="text-center">{{ contact.name }}</ion-card-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-list>
+  </ion-content>
+<ion-content>
+  <ion-modal #modal class="IssueModal" trigger="filter-modal">
+    <ng-template>
+      <ion-row style="margin-top: 4%;">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Role</ion-label>
+            <ion-select interface="popover" placeholder="Select One" [(ngModel)]="roleValue"
+              (ionChange)="filteredContacts()" (ionChange)="roleData()" (ionChange)="modal.dismiss()">
+              <ion-select-option value="admin">Admin</ion-select-option>
+              <ion-select-option value="user">User</ion-select-option>
+              <ion-select-option value="employe">Employe</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-modal>
+
+  <div *ngIf="!loading; else showLoader"></div>
+  <ng-template #showLoader>
+    <div class="loading-bar" style="margin-top: -5%;">
+      <div class="image-holder col-sm-12 text-center" style="height: 95vh; background: white;">
+        <div class="loader">
+          <img alt="" [src]="contact.imageSrc" style="height: 8em" />
+          <h4>Please wait...</h4>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-content>
+</ion-content>
+
+
+
+
+
+
+  

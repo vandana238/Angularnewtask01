@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense"></ion-header>
+  <h1>hello world</h1>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
+    <!-- Name -->
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+  
+    <!-- Address -->
+    <ion-item>
+      <ion-label>Address</ion-label>
+      <ion-textarea formControlName="address"></ion-textarea>
+    </ion-item>
+  
+    <!-- Gender -->
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select formControlName="gender" interface="popover">
+        <ion-select-option value="Male">Male</ion-select-option>
+        <ion-select-option value="Female">Female</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <!-- Branch -->
+    <ion-item>
+      <ion-label>Branch</ion-label>
+      <ion-radio-group formControlName="branch">
+        <ion-list-header>
+          Select an option:
+        </ion-list-header>
+        <ion-item>
+          <ion-label>CSE</ion-label>
+          <ion-radio value="CSE"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>ECE</ion-label>
+          <ion-radio value="ECE"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>EEE</ion-label>
+          <ion-radio value="EEE"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+  
+    <!-- Select -->
+    <ion-item>
+      <ion-label>Select</ion-label>
+      <ion-select formControlName="select" interface="action-sheet">
+        <ion-select-option value="option1">Option 1</ion-select-option>
+        <ion-select-option value="option2">Option 2</ion-select-option>
+        <ion-select-option value="option3">Option 3</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <!-- Submit Button -->
+    <ion-button type="submit" expand="full" *ngIf="ionicForm.valid">Submit</ion-button>
+  </form>
+  
+  
